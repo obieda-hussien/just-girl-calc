@@ -40,7 +40,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm init -y
-          npm install --save-dev htmlhint stylelint eslint lighthouse axe-core puppeteer
+          npm install --save-dev htmlhint stylelint eslint lighthouse axe-core puppeteer @axe-core/puppeteer
 
       - name: HTML Validation
         run: |
