@@ -79,6 +79,21 @@ class JustGirlCalc {
         this.initializeCalculator();
     }
 
+    // Convert Arabic numerals to English numerals for calculations
+    convertArabicToEnglishNumerals(input) {
+        const arabicToEnglish = {
+            '٠': '0', '١': '1', '٢': '2', '٣': '3', '٤': '4',
+            '٥': '5', '٦': '6', '٧': '7', '٨': '8', '٩': '9'
+        };
+        
+        // Also convert Arabic operators to standard operators
+        let converted = input.replace(/[٠-٩]/g, (char) => arabicToEnglish[char] || char);
+        converted = converted.replace(/×/g, '*');
+        converted = converted.replace(/÷/g, '/');
+        
+        return converted;
+    }
+
     initializeSEOTracking() {
         // Track page load for SEO analytics
         if (typeof gtag !== 'undefined') {
@@ -169,9 +184,9 @@ class JustGirlCalc {
                 // Track button clicks for SEO
                 this.trackSEOEvent('button_click', 'interaction', `button_${value}`);
                 
-                if (e.target.classList.contains('clear')) {
+                if (e.target.classList.contains('btn-clear')) {
                     this.clearDisplay();
-                } else if (e.target.classList.contains('equals')) {
+                } else if (e.target.classList.contains('btn-equals')) {
                     this.calculateResult();
                 } else {
                     this.appendToDisplay(value);
@@ -218,7 +233,7 @@ class JustGirlCalc {
         // Track calculation for SEO
         this.trackSEOEvent('calculation_attempt', 'interaction', 'user attempted calculation');
 
-        const input = this.currentInput;
+        const input = this.convertArabicToEnglishNumerals(this.currentInput);
 
         // Check for jealousy triggers first
         if (this.isPhoneNumber(input)) {

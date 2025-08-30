@@ -90,13 +90,17 @@ body {
     color: #8B4B8C;
     cursor: pointer;
     transition: all 0.2s ease;
-    height: 55px;
+    height: 60px;
     background: linear-gradient(145deg, #FFB6C1, #FF91A4);
     box-shadow: 
         0 4px 8px rgba(255, 105, 180, 0.2),
         inset 0 1px 2px rgba(255, 255, 255, 0.3),
         inset 0 -1px 2px rgba(255, 105, 180, 0.2);
     border: 1px solid rgba(255, 182, 193, 0.4);
+    /* Better touch targets */
+    min-height: 44px;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .btn:hover {
@@ -187,22 +191,54 @@ body {
     color: #FF69B4;
 }
 
-/* Responsive design */
+/* Mobile-first responsive design */
 @media (max-width: 480px) {
     .calculator {
-        width: 300px;
+        width: 95vw;
+        max-width: 350px;
         padding: 20px;
+        margin: 10px;
     }
     
     .btn {
-        height: 50px;
+        height: 60px;
+        font-size: 18px;
+        /* Larger touch targets for mobile */
+        min-height: 44px; /* Apple's recommended minimum touch target */
+    }
+    
+    .display {
+        font-size: 18px;
+        padding: 20px;
+        min-height: 70px;
+        line-height: 1.3;
+    }
+    
+    .button-grid {
+        gap: 15px;
+    }
+}
+
+/* Small mobile phones */
+@media (max-width: 360px) {
+    .calculator {
+        width: 98vw;
+        padding: 15px;
+    }
+    
+    .btn {
+        height: 55px;
         font-size: 16px;
     }
     
     .display {
         font-size: 16px;
         padding: 15px;
-        min-height: 50px;
+        min-height: 60px;
+    }
+    
+    .button-grid {
+        gap: 12px;
     }
 }
 
