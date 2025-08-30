@@ -8,6 +8,9 @@ class JustGirlCalc {
         this.sessionStartTime = Date.now();
         this.interactionCount = 0;
         
+        // Initialize SEO tracking
+        this.initializeSEOTracking();
+        
         // Message arrays for different scenarios
         this.multiplicationMessages = [
             "عمر الضرب ما كان حل 🥺",
@@ -26,17 +29,19 @@ class JustGirlCalc {
         ];
 
         this.subtractionMessages = [
-            "طب هو احنا في امتحان رياضة؟ 😤",
-            "مالك بتطرحي كده، زهقانة مني؟",
-            "ناقص ايه يا قمر؟ ناقص بس شوية تقدير لمجهودي.",
-            "يعني مش كفاية اللي انا شايلاه، لازم طرح كمان؟ 😮‍💨"
+            "مش هنخسر بعض عشان شوية أرقام تافهة 😢",
+            "ناقصين هم إحنا؟ ما ترحمونا بقى.",
+            "الطرح ده بيجيبلي اكتئاب وبيفكرني بالماضي 🥀",
+            "Don't be so negative بليز.",
+            "أنا أطرح طرحة جديدة أحسن من وجع الدماغ ده."
         ];
 
         this.divisionMessages = [
-            "يا خبر! انت عايزاني أقسم الأرقام دي؟ حاضر يا فندم.",
-            "قسمة! أفكرها رياضة تخسيس للأرقام؟ 🤔",
-            "بتقسمي إيه على إيه دلوقتي؟ عقلي انقسم من الحساب.",
-            "قسمة قسمة... ده كأنك بتقوليلي اتجوزي واتطلقي."
+            "ليه تفرق بينهم؟ مسيرهم يتصالحوا في الآخر.",
+            "القسمة دي بتفكرني بالأكس بتاعي 💔",
+            "ربنا ما يجيب قسمة وحشة أبدًا.",
+            "هو أنا ورثت عشان تقسم؟",
+            "كل واحد ياخد بتاعه ومنشوفش وش بعض تاني."
         ];
 
         this.divideByZeroMessages = [
@@ -48,30 +53,24 @@ class JustGirlCalc {
         this.complexMessages = [
             "لا لا لا كل ده! انت عايز تجنني؟",
             "دماغي لفت، هاتلي قهوة الأول عشان أركز ☕",
-            "دي مسألة دي ولا شتيمة؟",
-            "معلش أصلي أدبي، مليش في الكلام ده.",
-            "أنا مخي مش بروسيسور يا حبيبي، براحة عليا."
+            "كتر كده ليه؟ ده أنا أعد على صوابعي.",
+            "خلصوا كتر كده، آخري حاسبة جوجل.",
+            "عايزني أتعب نفسي ليه، ألعب كاندي كراش أحسن."
         ];
 
-        this.jealousyPhoneMessages = [
-            "ده رقم اسماء ده؟ روح كلمها أحسن. 😒",
-            "رقم مين ده اللي بتكتبهولي؟ عايزني أغير يعني؟",
-            "لو ده رقم واحدة تانية، قولي من دلوقتي عشان منزعلش من بعض. 😠",
-            "شايفاك وانت بتفتح الـ Instagram... عجباك صورهم أوي؟"
-        ];
-
-        this.jealousyDateMessages = [
-            "بالراحة! ده تاريخ ايه اللي انت كاتبه ده؟",
-            "ده ذكرى أيه؟ مش فاكرة أني حضرت الحدث ده.",
-            "الله الله... ده تاريخ مهم ولا ايه؟ وأنا مع مين انا النهار ده؟",
-            "قولي بالراحة... ده تاريخ حبايبك القدام؟ 😤"
+        this.phoneNumberMessages = [
+            "رقم مين ده اللي بتكتبهولي؟ عايزني أغير يعني؟ 😡",
+            "يا ابنتي مش تطبيق WhatsApp.",
+            "ده رقم حبيبك ولا حبيبتك؟ مقولتيش!",
+            "هات الرقم ده بلاش، أنا مش تليفون بوك.",
+            "تخبي رقم وتفضحيه عندي؟ إيه القرف ده!"
         ];
 
         this.clearMessages = [
-            "هاي هاي! زهقتم مني؟ 😢",
-            "ليه بتمسحوني كده، أنا مجرحتكوش.",
-            "مسح! أصلي أوفر كده عليكم، مضايقكوش؟",
-            "امسحي امسحي، العتب عالنظر 😤",
+            "مسحت الرقم؟ طب امسح نمرته من عندك بالمرة 💔",
+            "ياعم احذف كله، زي حياتك كده.",
+            "مسح! زي ما كل الذكريات اتمسحت 😪",
+            "clear عليا وعلى اللي خلفني.",
             "آدي الحل! امسحي كل حاجة وابدئي من جديد."
         ];
         
@@ -153,44 +152,91 @@ class JustGirlCalc {
     }
 
     initializeCalculator() {
+        this.display = document.getElementById('display');
+        this.currentInput = '';
+        this.shouldResetDisplay = false;
+        
         this.initializeEventListeners();
         
         // Track calculator initialization for SEO
         this.trackSEOEvent('calculator_initialized', 'setup', 'calculator ready for use');
     }
+}
+
+        this.complexMessages = [
+            "لا لا لا كل ده! انت عايز تجنني؟",
+            "دماغي لفت، هاتلي قهوة الأول عشان أركز ☕",
+            "دي مسألة دي ولا شتيمة؟",
+            "معلش أصلي أدبي، مليش في الكلام ده.",
+            "أنا مخي مش بروسيسور يا حبيبي، براحة عليا."
+        ];
+
+        this.jealousyPhoneMessages = [
+            "ده رقم اسماء ده؟ روح كلمها أحسن. 😒",
+            "رقم مين ده اللي بتكتبهولي؟ عايزني أغير يعني؟",
+            "لو ده رقم واحدة تانية، قولي من دلوقتي عشان منزعلش من بعض. 😠",
+            "شايفاك وانت بتفتح الـ Instagram... عجباك صورهم أوي؟"
+        ];
+
+        this.jealousyDateMessages = [
+            "عيد الحب؟ بتحسبه مع مين يا حبيبي؟ 🔪",
+            "تاريخ ميلادها، مش كده؟ أنا فاكرة كل حاجة.",
+            "ياريتك كنت فاكر تاريخ أول مرة فتحتني فيها زي ما انت حافظ التواريخ دي."
+        ];
+
+        this.clearMessages = [
+            "بتمسح إيه؟ هو أنا كتبت حاجة غلط؟ 🥺",
+            "امسح الماضي كله، أنا موافقة.",
+            "مسحت الرقم؟ طب امسح نمرته من عندك بالمرة."
+        ];
+
+        this.generalMessages = [
+            "بلاش عبط، أنا آلة حاسبة مش ساحرة.",
+            "النتيجة طلعت... بس مش هقولك 😜",
+            "k.",
+            "خلاص، مش لاعبة.",
+            "احسبها انت بقى طالما شاطر أوي كده."
+        ];
+
+        this.initializeEventListeners();
+    }
 
     initializeEventListeners() {
-        // Button click events
-        const buttons = document.querySelectorAll('.btn');
-        buttons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const value = e.target.textContent;
-                
-                // Track button clicks for SEO
-                this.trackSEOEvent('button_click', 'interaction', `button_${value}`);
-                
-                if (e.target.classList.contains('clear')) {
-                    this.clearDisplay();
-                } else if (e.target.classList.contains('equals')) {
-                    this.calculateResult();
-                } else {
-                    this.appendToDisplay(value);
-                }
+        // Number buttons (Arabic numerals)
+        const numberMap = {
+            'zero': '0', 'one': '1', 'two': '2', 'three': '3', 
+            'four': '4', 'five': '5', 'six': '6', 'seven': '7', 
+            'eight': '8', 'nine': '9'
+        };
+
+        Object.keys(numberMap).forEach(id => {
+            document.getElementById(id).addEventListener('click', () => {
+                this.appendToDisplay(numberMap[id]);
             });
         });
 
+        // Operator buttons
+        document.getElementById('add').addEventListener('click', () => this.appendToDisplay('+'));
+        document.getElementById('subtract').addEventListener('click', () => this.appendToDisplay('-'));
+        document.getElementById('multiply').addEventListener('click', () => this.appendToDisplay('*'));
+        document.getElementById('divide').addEventListener('click', () => this.appendToDisplay('/'));
+        document.getElementById('decimal').addEventListener('click', () => this.appendToDisplay('.'));
+
+        // Special buttons
+        document.getElementById('clear').addEventListener('click', () => this.clearDisplay());
+        document.getElementById('equals').addEventListener('click', () => this.calculateResult());
+
         // Keyboard support
-        document.addEventListener('keydown', (e) => {
-            this.handleKeyboard(e);
-        });
+        document.addEventListener('keydown', (e) => this.handleKeyboard(e));
     }
 
     appendToDisplay(value) {
         if (this.shouldResetDisplay) {
             this.currentInput = '';
             this.shouldResetDisplay = false;
+            this.display.className = 'display'; // Reset any special classes
         }
-        
+
         this.currentInput += value;
         this.updateDisplay(this.currentInput);
     }
@@ -200,27 +246,30 @@ class JustGirlCalc {
     }
 
     clearDisplay() {
-        this.currentInput = '';
         const message = this.getRandomMessage(this.clearMessages);
-        this.showSassyMessage(message);
         
-        // Track clear action for SEO
-        this.trackSEOEvent('calculator_clear', 'interaction', 'user cleared calculator');
+        // Show clear message temporarily
+        this.display.textContent = message;
+        this.display.className = 'display clear-message';
         
         setTimeout(() => {
-            this.updateDisplay('');
-        }, 2000);
+            this.currentInput = '';
+            this.updateDisplay();
+            this.display.className = 'display';
+            this.shouldResetDisplay = false;
+        }, 1500);
     }
 
     calculateResult() {
-        if (!this.currentInput) return;
+        if (!this.currentInput.trim()) {
+            this.showSassyMessage(this.getRandomMessage(this.generalMessages));
+            return;
+        }
 
-        // Track calculation for SEO
-        this.trackSEOEvent('calculation_attempt', 'interaction', 'user attempted calculation');
-
-        const input = this.currentInput;
-
-        // Check for jealousy triggers first
+        // Convert Arabic numerals to English for processing
+        const input = this.convertArabicToEnglish(this.currentInput);
+        
+        // Check for jealousy triggers first (high priority)
         if (this.isPhoneNumber(input)) {
             this.showJealousMessage(this.getRandomMessage(this.jealousyPhoneMessages));
             return;
@@ -251,46 +300,47 @@ class JustGirlCalc {
         } else if (operators.includes('-')) {
             this.showSassyMessage(this.getRandomMessage(this.subtractionMessages));
         } else {
-            // Simple number or no operation - just show result
-            try {
-                const result = eval(input);
-                this.display.textContent = result;
-                this.currentInput = result.toString();
-                this.shouldResetDisplay = true;
-                
-                // Track successful calculation for SEO
-                this.trackSEOEvent('calculation_success', 'interaction', 'successful calculation');
-            } catch (error) {
-                this.showSassyMessage("إيه ده اللي كتبتيه ده؟ مش فاهمة! 🤷‍♀️");
-            }
+            this.showSassyMessage(this.getRandomMessage(this.generalMessages));
         }
     }
 
-    // Helper methods
-    isPhoneNumber(input) {
-        // Egyptian phone patterns
-        const phonePatterns = [
-            /^01[0125]\d{8}$/,  // Egyptian mobile
-            /^(\+20|0020)?01[0125]\d{8}$/,  // With country code
-            /^\d{11}$/  // Simple 11 digit check
-        ];
+    showSassyMessage(message) {
+        this.display.textContent = message;
+        this.display.className = 'display sassy';
+        this.shouldResetDisplay = true;
+    }
+
+    showJealousMessage(message) {
+        this.display.textContent = message;
+        this.display.className = 'display jealous';
+        this.shouldResetDisplay = true;
+    }
+
+    convertArabicToEnglish(text) {
+        const arabicNumerals = '٠١٢٣٤٥٦٧٨٩';
+        const englishNumerals = '0123456789';
         
-        const cleanInput = input.replace(/[\+\-\*\/\(\)\s]/g, '');
-        return phonePatterns.some(pattern => pattern.test(cleanInput));
+        return text.split('').map(char => {
+            const index = arabicNumerals.indexOf(char);
+            return index !== -1 ? englishNumerals[index] : char;
+        }).join('');
+    }
+
+    isPhoneNumber(input) {
+        // Remove operators and check if it's a long number (phone number)
+        const numbersOnly = input.replace(/[+\-*/.\s]/g, '');
+        return numbersOnly.length > 7 && /^\d+$/.test(numbersOnly);
     }
 
     isSpecialDate(input) {
-        // Check for date patterns like dd/mm/yyyy or dd-mm-yyyy
-        const datePatterns = [
-            /^\d{1,2}[\/\-]\d{1,2}[\/\-]\d{4}$/,
-            /^\d{4}[\/\-]\d{1,2}[\/\-]\d{1,2}$/
-        ];
-        
-        return datePatterns.some(pattern => pattern.test(input));
+        // Check for specific date patterns like 1402 (Feb 14) or 2512 (Dec 25)
+        const numbersOnly = input.replace(/[+\-*/.\s]/g, '');
+        const specialDates = ['1402', '2512', '0214', '1225', '1414', '2525'];
+        return specialDates.includes(numbersOnly);
     }
 
     isDivisionByZero(input) {
-        return /\/\s*0(?!\d)/.test(input);
+        return /\/0(?![0-9])/.test(input);
     }
 
     getOperators(input) {
@@ -299,32 +349,12 @@ class JustGirlCalc {
         if (input.includes('-')) operators.push('-');
         if (input.includes('*')) operators.push('*');
         if (input.includes('/')) operators.push('/');
-        return operators;
+        return [...new Set(operators)]; // Remove duplicates
     }
 
     hasComplexOperation(input) {
-        // Check for parentheses or multiple consecutive operators
-        return /[\(\)]/.test(input) || /[\+\-\*\/]{2,}/.test(input);
-    }
-
-    showSassyMessage(message) {
-        this.display.textContent = message;
-        this.display.className = 'display sassy';
-        this.shouldResetDisplay = true;
-        
-        setTimeout(() => {
-            this.display.className = 'display';
-        }, 3000);
-    }
-
-    showJealousMessage(message) {
-        this.display.textContent = message;
-        this.display.className = 'display jealous';
-        this.shouldResetDisplay = true;
-        
-        setTimeout(() => {
-            this.display.className = 'display';
-        }, 4000);
+        const operatorCount = (input.match(/[+\-*/]/g) || []).length;
+        return operatorCount > 1;
     }
 
     getRandomMessage(messages) {
@@ -391,7 +421,7 @@ const randomCompliments = [
 setInterval(() => {
     if (Math.random() < 0.1) { // 10% chance every 30 seconds
         const display = document.getElementById('display');
-        if (display && display.textContent === '...اكتبي أرقامك يا حلوة') {
+        if (display.textContent === '...اكتبي أرقامك يا حلوة') {
             const compliment = randomCompliments[Math.floor(Math.random() * randomCompliments.length)];
             display.textContent = compliment;
             display.className = 'display sassy';
