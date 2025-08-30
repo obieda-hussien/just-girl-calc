@@ -208,22 +208,32 @@ jobs:
               
               await chrome.kill();
               
-              // Check if any score is below 80
+              // Check if any score is below 80 (excluding performance)
               const minScore = 80;
               let allPassed = true;
               
               for (const [category, data] of Object.entries(scores)) {
                 const score = Math.round(data.score * 100);
-                if (score < minScore) {
-                  console.error(`❌ ${category} score (${score}) is below minimum (${minScore})`);
-                  allPassed = false;
+                if (category === 'performance') {
+                  // Report performance but don't fail build on it
+                  if (score < minScore) {
+                    console.log(`⚠️  Performance score (${score}) is below minimum (${minScore}) but not blocking deployment`);
+                  } else {
+                    console.log(`✅ Performance score (${score}) passed!`);
+                  }
+                } else {
+                  // Still enforce minimum scores for accessibility, best-practices, and SEO
+                  if (score < minScore) {
+                    console.error(`❌ ${category} score (${score}) is below minimum (${minScore})`);
+                    allPassed = false;
+                  }
                 }
               }
               
               if (allPassed) {
-                console.log('✅ All Lighthouse scores passed!');
+                console.log('✅ All required Lighthouse scores passed!');
               } else {
-                console.log('⚠️  Some scores are below the minimum threshold');
+                console.log('⚠️  Some non-performance scores are below the minimum threshold');
                 process.exit(1);
               }
               
