@@ -1,0 +1,304 @@
+/* Just Girl Calc - CSS Styling */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(135deg, #FFF0F5 0%, #FFECF5 50%, #FFE4E6 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    direction: rtl;
+    text-align: right;
+}
+
+.calculator-container {
+    perspective: 1000px;
+}
+
+.calculator {
+    background: rgba(255, 192, 203, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: 
+        0 8px 32px rgba(255, 105, 180, 0.2),
+        inset 0 2px 8px rgba(255, 255, 255, 0.4),
+        inset 0 -2px 8px rgba(255, 105, 180, 0.1);
+    width: 350px;
+    max-width: 90vw;
+    transform: translateZ(0);
+    transition: all 0.3s ease;
+}
+
+.calculator:hover {
+    transform: translateY(-5px) translateZ(0);
+    box-shadow: 
+        0 15px 40px rgba(255, 105, 180, 0.3),
+        inset 0 2px 8px rgba(255, 255, 255, 0.4),
+        inset 0 -2px 8px rgba(255, 105, 180, 0.1);
+}
+
+.display {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #8B4B8C;
+    text-align: center;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+        inset 0 4px 8px rgba(255, 105, 180, 0.1),
+        0 2px 4px rgba(255, 105, 180, 0.1);
+    border: 1px solid rgba(255, 182, 193, 0.3);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.4;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 12px;
+    grid-template-areas:
+        "clear divide multiply subtract"
+        "seven eight nine add"
+        "four five six equals"
+        "one two three equals"
+        "zero zero decimal equals";
+}
+
+.btn {
+    border: none;
+    border-radius: 15px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #8B4B8C;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 55px;
+    background: linear-gradient(145deg, #FFB6C1, #FF91A4);
+    box-shadow: 
+        0 4px 8px rgba(255, 105, 180, 0.2),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3),
+        inset 0 -1px 2px rgba(255, 105, 180, 0.2);
+    border: 1px solid rgba(255, 182, 193, 0.4);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 12px rgba(255, 105, 180, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.4),
+        inset 0 -1px 2px rgba(255, 105, 180, 0.3);
+    background: linear-gradient(145deg, #FFC0CB, #FFB6C1);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 2px 4px rgba(255, 105, 180, 0.2),
+        inset 0 2px 4px rgba(255, 105, 180, 0.2);
+}
+
+.btn-clear, .btn-equals {
+    background: linear-gradient(145deg, #FF69B4, #FF1493);
+    color: white;
+    font-weight: 700;
+}
+
+.btn-clear:hover, .btn-equals:hover {
+    background: linear-gradient(145deg, #FF91A4, #FF69B4);
+}
+
+.btn-operator {
+    background: linear-gradient(145deg, #FFB6C1, #FF91A4);
+    font-weight: 700;
+}
+
+.btn-number {
+    background: linear-gradient(145deg, #FFB6C1, #FF91A4);
+}
+
+.btn-decimal {
+    background: linear-gradient(145deg, #FFB6C1, #FF91A4);
+}
+
+/* Grid area assignments */
+#clear { grid-area: clear; }
+#divide { grid-area: divide; }
+#multiply { grid-area: multiply; }
+#subtract { grid-area: subtract; }
+#seven { grid-area: seven; }
+#eight { grid-area: eight; }
+#nine { grid-area: nine; }
+#add { grid-area: add; }
+#four { grid-area: four; }
+#five { grid-area: five; }
+#six { grid-area: six; }
+#equals { grid-area: equals; }
+#one { grid-area: one; }
+#two { grid-area: two; }
+#three { grid-area: three; }
+#zero { grid-area: zero; }
+#decimal { grid-area: decimal; }
+
+/* Special animations for personality */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.display.sassy {
+    animation: shake 0.5s ease-in-out;
+    background: rgba(255, 192, 203, 0.9);
+    color: #8B4B8C;
+}
+
+.display.jealous {
+    animation: shake 0.8s ease-in-out;
+    background: rgba(255, 69, 180, 0.2);
+    color: #DC143C;
+}
+
+.display.clear-message {
+    animation: bounce 0.6s ease-in-out;
+    background: rgba(255, 255, 255, 0.95);
+    color: #FF69B4;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .calculator {
+        width: 300px;
+        padding: 20px;
+    }
+    
+    .btn {
+        height: 50px;
+        font-size: 16px;
+    }
+    
+    .display {
+        font-size: 16px;
+        padding: 15px;
+        min-height: 50px;
+    }
+}
+
+/* Add some sparkle effects */
+@keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+.calculator::before {
+    content: '✨';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 20px;
+    animation: sparkle 2s infinite;
+    pointer-events: none;
+}
+
+.calculator::after {
+    content: '💖';
+    position: absolute;
+    bottom: -10px;
+    left: -10px;
+    font-size: 20px;
+    animation: sparkle 2s infinite 1s;
+    pointer-events: none;
+}
+
+/* Footer Styles */
+.footer {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    text-align: center;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-links {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.footer-link {
+    color: #8B4B8C;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+
+.footer-link:hover {
+    color: #FF69B4;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.footer-divider {
+    color: #FFB6C1;
+    font-weight: bold;
+    margin: 0 0.5rem;
+}
+
+.footer-copyright {
+    color: #8B4B8C;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.footer-copyright p {
+    margin: 0.2rem 0;
+}
+
+/* Responsive footer */
+@media (max-width: 480px) {
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .footer-divider {
+        display: none;
+    }
+    
+    .footer {
+        margin-top: 1rem;
+        padding: 1rem;
+    }
+}

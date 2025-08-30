@@ -1,0 +1,236 @@
+# ========================================
+# JUST GIRL CALC - ULTRA SEO OPTIMIZATION
+# ========================================
+
+# Enable Gzip compression for maximum performance
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/ld+json
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE application/font-woff
+    AddOutputFilterByType DEFLATE application/font-woff2
+    AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+    AddOutputFilterByType DEFLATE font/truetype
+    AddOutputFilterByType DEFLATE font/opentype
+</IfModule>
+
+# Advanced browser caching for better performance scores
+<IfModule mod_expires.c>
+    ExpiresActive on
+    
+    # HTML (Cache for 1 hour to allow quick updates)
+    ExpiresByType text/html "access plus 1 hour"
+    
+    # CSS and JavaScript (Cache for 1 year)
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType application/x-javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
+    
+    # Images (Cache for 1 year)
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/ico "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresByType image/vnd.microsoft.icon "access plus 1 year"
+    
+    # Fonts (Cache for 1 year)
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+    ExpiresByType font/truetype "access plus 1 year"
+    ExpiresByType font/opentype "access plus 1 year"
+    
+    # Documents and manifests
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType application/manifest+json "access plus 1 month"
+    ExpiresByType application/xml "access plus 1 hour"
+    ExpiresByType text/xml "access plus 1 hour"
+    
+    # Default fallback
+    ExpiresDefault "access plus 1 month"
+</IfModule>
+
+# Ultra-enhanced security and SEO headers
+<IfModule mod_headers.c>
+    # Security headers
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options SAMEORIGIN
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), speaker=()"
+    
+    # SEO and performance headers
+    Header always set Vary "Accept-Encoding, User-Agent"
+    Header always set Cache-Control "public, max-age=31536000" env=long_expires
+    Header always set Cache-Control "public, max-age=3600" env=short_expires
+    
+    # Arabic language and RTL support
+    Header always set Content-Language "ar"
+    Header always set X-UA-Compatible "IE=edge"
+    
+    # Mobile optimization
+    Header always set X-Mobile-Optimized "true"
+    
+    # Social media optimization
+    Header always set X-Robots-Tag "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    
+    # Performance hints
+    Header always set Link "</style.css>; rel=preload; as=style"
+    Header always set Link "</script.js>; rel=preload; as=script"
+    Header always set Link "<https://fonts.googleapis.com>; rel=preconnect"
+    
+    # Remove server signature for security
+    Header always unset Server
+    Header always unset X-Powered-By
+</IfModule>
+
+# Advanced URL rewriting for SEO
+RewriteEngine On
+
+# Redirect www to non-www (faster and cleaner URLs)
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# Force HTTPS for security and SEO
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Add trailing slash to directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1/ [L,R=301]
+
+# SEO-friendly URL redirects
+RewriteRule ^calculator/?$ / [R=301,L]
+RewriteRule ^calc/?$ / [R=301,L]
+RewriteRule ^girls-calculator/?$ / [R=301,L]
+RewriteRule ^حاسبة-البنات/?$ / [R=301,L]
+RewriteRule ^حاسبة/?$ / [R=301,L]
+
+# Handle Arabic URLs
+RewriteRule ^privacy/?$ /privacy-policy.html [R=301,L]
+RewriteRule ^terms/?$ /terms-of-service.html [R=301,L]
+RewriteRule ^guide/?$ /user-policy.html [R=301,L]
+
+# Mobile-specific redirects (if needed)
+RewriteCond %{HTTP_USER_AGENT} "android|blackberry|iphone|ipod|iemobile|opera mobile|palmos|webos|googlebot-mobile" [NC]
+RewriteRule ^$ / [L]
+
+# Enhanced error pages with personality
+ErrorDocument 404 /404.html
+ErrorDocument 403 /403.html
+ErrorDocument 500 /500.html
+ErrorDocument 502 /500.html
+ErrorDocument 503 /500.html
+
+# Block access to sensitive files for security
+<Files ".git*">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "*.md">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "README*">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files ".env*">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "composer.*">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "package*.json">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Allow important files for SEO
+<Files "robots.txt">
+    Order allow,deny
+    Allow from all
+</Files>
+
+<Files "sitemap*.xml">
+    Order allow,deny
+    Allow from all
+</Files>
+
+<Files "*.webmanifest">
+    Order allow,deny
+    Allow from all
+</Files>
+
+# Enhanced UTF-8 encoding for Arabic content
+AddDefaultCharset UTF-8
+DefaultLanguage ar
+
+# Advanced MIME types
+AddType application/javascript .js
+AddType text/css .css
+AddType application/json .json
+AddType application/ld+json .jsonld
+AddType application/manifest+json .webmanifest
+AddType image/webp .webp
+AddType image/svg+xml .svg
+AddType application/font-woff .woff
+AddType application/font-woff2 .woff2
+AddType application/vnd.ms-fontobject .eot
+AddType font/truetype .ttf
+AddType font/opentype .otf
+
+# Enable ETags for better caching
+FileETag MTime Size
+
+# Optimize server performance
+<IfModule mod_php5.c>
+    php_value memory_limit 256M
+    php_value max_execution_time 300
+    php_value max_input_vars 3000
+    php_value post_max_size 32M
+    php_value upload_max_filesize 32M
+</IfModule>
+
+# Enable Keep-Alive for performance
+<IfModule mod_headers.c>
+    Header set Connection keep-alive
+</IfModule>
+
+# Optimize for Arabic search engines
+<IfModule mod_rewrite.c>
+    # Google Arabic regions
+    RewriteCond %{HTTP:Accept-Language} ^ar [NC]
+    RewriteRule ^$ /?lang=ar [QSA,L]
+    
+    # Bing Arabic optimization
+    RewriteCond %{HTTP_USER_AGENT} "bingbot" [NC]
+    RewriteRule ^$ /?bot=bing [QSA,L]
+    
+    # Yandex (popular in some Arab countries)
+    RewriteCond %{HTTP_USER_AGENT} "yandex" [NC]
+    RewriteRule ^$ /?bot=yandex [QSA,L]
+</IfModule>

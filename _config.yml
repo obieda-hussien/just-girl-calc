@@ -1,0 +1,57 @@
+# GitHub Pages Configuration
+
+# Exclude files from Jekyll processing
+include:
+  - .htaccess
+  - .nojekyll
+
+# Exclude build and development files
+exclude:
+  - node_modules/
+  - package*.json
+  - .eslintrc.json
+  - .stylelintrc.json
+  - lighthouse-report.json
+  - accessibility-test.js
+  - lighthouse-test.js
+  - monitor-live.js
+  - .github/
+  - README.md
+  - GITHUB_PAGES_SETUP.md
+
+# Plugin configuration
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Site settings for SEO
+title: "Just Girl Calc - حاسبة البنت المدللة"
+description: "حاسبة شخصية مميزة بطابع أنثوي ساحر مع ردود أفعال طريفة وعصرية باللغة العربية"
+url: "https://obieda-hussien.github.io"
+baseurl: "/just-girl-calc"
+
+# Language and locale
+lang: ar
+locale: ar_SA
+
+# Social media and SEO
+author: 
+  name: "Obieda Hussien"
+  
+social:
+  name: "Just Girl Calc"
+  links:
+    - "https://github.com/obieda-hussien/just-girl-calc"
+
+# GitHub repository
+repository: "obieda-hussien/just-girl-calc"
+
+# Markdown settings
+markdown: kramdown
+highlighter: rouge
+
+# Enable safe mode
+safe: true
+
+# Permalink structure
+permalink: pretty

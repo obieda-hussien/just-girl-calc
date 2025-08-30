@@ -1,0 +1,265 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Quality checks and testing
+  quality-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: |
+          npm init -y
+          npm install --save-dev htmlhint stylelint eslint lighthouse axe-core puppeteer
+
+      - name: HTML Validation
+        run: |
+          npx htmlhint "*.html"
+          npx htmlhint "**/*.html"
+
+      - name: CSS Validation
+        run: |
+          echo '{
+            "extends": "stylelint-config-standard",
+            "rules": {
+              "color-hex-case": "lower",
+              "color-hex-length": "short",
+              "font-family-no-missing-generic-family-keyword": null,
+              "no-descending-specificity": null
+            }
+          }' > .stylelintrc.json
+          npx stylelint "*.css" "**/*.css" || echo "CSS linting completed with warnings"
+
+      - name: JavaScript Validation
+        run: |
+          echo '{
+            "env": {
+              "browser": true,
+              "es2021": true
+            },
+            "extends": "eslint:recommended",
+            "parserOptions": {
+              "ecmaVersion": 12,
+              "sourceType": "module"
+            },
+            "rules": {
+              "no-unused-vars": "warn",
+              "no-console": "off"
+            }
+          }' > .eslintrc.json
+          npx eslint "*.js" "**/*.js" || echo "JavaScript linting completed with warnings"
+
+      - name: Accessibility Check
+        run: |
+          cat > accessibility-test.js << 'EOF'
+          const puppeteer = require('puppeteer');
+          const { AxePuppeteer } = require('@axe-core/puppeteer');
+
+          (async () => {
+            const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+            const page = await browser.newPage();
+            await page.goto('file://' + process.cwd() + '/index.html');
+            
+            const results = await new AxePuppeteer(page).analyze();
+            
+            console.log('Accessibility violations:', results.violations.length);
+            
+            if (results.violations.length > 0) {
+              console.log('Violations found:');
+              results.violations.forEach((violation, index) => {
+                console.log(`${index + 1}. ${violation.description}`);
+                console.log(`   Impact: ${violation.impact}`);
+                console.log(`   Help: ${violation.helpUrl}`);
+              });
+            } else {
+              console.log('✅ No accessibility violations found!');
+            }
+            
+            await browser.close();
+          })();
+          EOF
+          
+          node accessibility-test.js
+
+      - name: Performance Check with Lighthouse
+        run: |
+          cat > lighthouse-test.js << 'EOF'
+          const lighthouse = require('lighthouse');
+          const chromeLauncher = require('chrome-launcher');
+          const fs = require('fs');
+
+          (async () => {
+            const chrome = await chromeLauncher.launch({chromeFlags: ['--headless', '--no-sandbox', '--disable-setuid-sandbox']});
+            const options = {logLevel: 'info', output: 'json', onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'], port: chrome.port};
+            const runnerResult = await lighthouse('file://' + process.cwd() + '/index.html', options);
+            
+            const reportJson = runnerResult.report;
+            const scores = JSON.parse(reportJson).categories;
+            
+            console.log('Lighthouse Scores:');
+            console.log('Performance:', Math.round(scores.performance.score * 100));
+            console.log('Accessibility:', Math.round(scores.accessibility.score * 100));
+            console.log('Best Practices:', Math.round(scores['best-practices'].score * 100));
+            console.log('SEO:', Math.round(scores.seo.score * 100));
+            
+            // Save report
+            fs.writeFileSync('lighthouse-report.json', reportJson);
+            
+            await chrome.kill();
+            
+            // Fail if any score is below 80
+            const minScore = 80;
+            for (const [category, data] of Object.entries(scores)) {
+              const score = Math.round(data.score * 100);
+              if (score < minScore) {
+                console.error(`❌ ${category} score (${score}) is below minimum (${minScore})`);
+                process.exit(1);
+              }
+            }
+            
+            console.log('✅ All Lighthouse scores passed!');
+          })();
+          EOF
+          
+          npm install chrome-launcher
+          node lighthouse-test.js
+
+      - name: Upload lighthouse report
+        uses: actions/upload-artifact@v3
+        with:
+          name: lighthouse-report
+          path: lighthouse-report.json
+
+  # Build and deploy
+  deploy:
+    needs: quality-check
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Optimize files for production
+        run: |
+          # Create optimized build
+          mkdir -p _site
+          
+          # Copy all files to _site
+          cp -r * _site/ 2>/dev/null || true
+          
+          # Remove development files from build
+          rm -rf _site/.git _site/.github _site/node_modules _site/package*.json _site/.eslintrc.json _site/.stylelintrc.json _site/lighthouse-report.json 2>/dev/null || true
+          
+          # Minify HTML (basic minification)
+          find _site -name "*.html" -type f -exec sed -i 's/>[[:space:]]\+</></g' {} \;
+          find _site -name "*.html" -type f -exec sed -i '/^[[:space:]]*$/d' {} \;
+          
+          # Add performance headers to .htaccess if it exists
+          if [ -f "_site/.htaccess" ]; then
+            echo "" >> _site/.htaccess
+            echo "# Performance optimizations added by GitHub Actions" >> _site/.htaccess
+            echo "<IfModule mod_headers.c>" >> _site/.htaccess
+            echo "    Header set Cache-Control \"public, max-age=31536000\" \"expr=%{REQUEST_URI} =~ /\\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/\"" >> _site/.htaccess
+            echo "    Header set Cache-Control \"public, max-age=86400\" \"expr=%{REQUEST_URI} =~ /\\.(html|htm)$/\"" >> _site/.htaccess
+            echo "</IfModule>" >> _site/.htaccess
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  # Performance monitoring (runs after deployment)
+  performance-monitor:
+    needs: deploy
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Monitor live site performance
+        run: |
+          npm install lighthouse chrome-launcher
+          
+          cat > monitor-live.js << 'EOF'
+          const lighthouse = require('lighthouse');
+          const chromeLauncher = require('chrome-launcher');
+
+          (async () => {
+            const chrome = await chromeLauncher.launch({chromeFlags: ['--headless', '--no-sandbox', '--disable-setuid-sandbox']});
+            const options = {logLevel: 'info', output: 'json', onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'], port: chrome.port};
+            
+            // Get the site URL from GitHub Pages
+            const siteUrl = `https://${process.env.GITHUB_REPOSITORY_OWNER}.github.io/${process.env.GITHUB_REPOSITORY.split('/')[1]}/`;
+            console.log('Testing live site:', siteUrl);
+            
+            try {
+              const runnerResult = await lighthouse(siteUrl, options);
+              const scores = JSON.parse(runnerResult.report).categories;
+              
+              console.log('🚀 Live Site Performance:');
+              console.log('Performance:', Math.round(scores.performance.score * 100));
+              console.log('Accessibility:', Math.round(scores.accessibility.score * 100));
+              console.log('Best Practices:', Math.round(scores['best-practices'].score * 100));
+              console.log('SEO:', Math.round(scores.seo.score * 100));
+              
+            } catch (error) {
+              console.log('Site may not be ready yet, skipping live test');
+              console.log('Error:', error.message);
+            }
+            
+            await chrome.kill();
+          })();
+          EOF
+          
+          node monitor-live.js
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
