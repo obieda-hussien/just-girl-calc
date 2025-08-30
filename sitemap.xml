@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    
+    <!-- Main Page -->
+    <url>
+        <loc>https://obieda-hussien.github.io/just-girl-calc/</loc>
+        <lastmod>2024-12-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Privacy Policy -->
+    <url>
+        <loc>https://obieda-hussien.github.io/just-girl-calc/privacy-policy.html</loc>
+        <lastmod>2024-12-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    
+    <!-- Terms of Service -->
+    <url>
+        <loc>https://obieda-hussien.github.io/just-girl-calc/terms-of-service.html</loc>
+        <lastmod>2024-12-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    
+    <!-- User Policy -->
+    <url>
+        <loc>https://obieda-hussien.github.io/just-girl-calc/user-policy.html</loc>
+        <lastmod>2024-12-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    
+</urlset>

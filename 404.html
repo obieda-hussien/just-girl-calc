@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - الصفحة غير موجودة | Just Girl Calc</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #FFF0F5 0%, #FFB6C1 50%, #FF69B4 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            direction: rtl;
+        }
+        
+        .error-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px rgba(255, 105, 180, 0.3);
+            max-width: 500px;
+            margin: 2rem;
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            color: #FF69B4;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+        }
+        
+        .error-message {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .error-description {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .home-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF69B4, #FF1493);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+        }
+        
+        .home-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.6);
+        }
+        
+        .emoji {
+            font-size: 2rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-code">404</div>
+        <div class="emoji">💔</div>
+        <h1 class="error-message">الصفحة غير موجودة!</h1>
+        <p class="error-description">
+            يا حبيبتي الصفحة اللي بتدوري عليها مش موجودة 😢<br>
+            يمكن انت كتبتي عنوان غلط، أو الصفحة اتشالت<br>
+            تعالي نرجع للحاسبة عشان نكمل حسابات 💅
+        </p>
+        <a href="/" class="home-button">ارجعي للحاسبة ✨</a>
+    </div>
+</body>
+</html>

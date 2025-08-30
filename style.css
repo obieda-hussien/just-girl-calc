@@ -11,11 +11,11 @@ body {
     background: linear-gradient(135deg, #FFF0F5 0%, #FFECF5 50%, #FFE4E6 100%);
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     direction: rtl;
     text-align: right;
-    overflow: hidden;
 }
 
 .calculator-container {
@@ -230,4 +230,75 @@ body {
     font-size: 20px;
     animation: sparkle 2s infinite 1s;
     pointer-events: none;
+}
+
+/* Footer Styles */
+.footer {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    text-align: center;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-links {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.footer-link {
+    color: #8B4B8C;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+
+.footer-link:hover {
+    color: #FF69B4;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.footer-divider {
+    color: #FFB6C1;
+    font-weight: bold;
+    margin: 0 0.5rem;
+}
+
+.footer-copyright {
+    color: #8B4B8C;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.footer-copyright p {
+    margin: 0.2rem 0;
+}
+
+/* Responsive footer */
+@media (max-width: 480px) {
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .footer-divider {
+        display: none;
+    }
+    
+    .footer {
+        margin-top: 1rem;
+        padding: 1rem;
+    }
 }
