@@ -13,7 +13,7 @@
 ### 2. Automated Workflow Features ✨
 - **Quality Checks**: HTML, CSS, JavaScript validation
 - **Accessibility Testing**: WCAG compliance checks
-- **Performance Testing**: Lighthouse audits (minimum 80% scores)
+- **Performance Testing**: Lighthouse audits (reporting only, non-blocking)
 - **SEO Optimization**: Automated SEO validation
 - **Build Optimization**: File minification and caching headers
 - **Live Monitoring**: Performance monitoring after deployment
@@ -31,7 +31,7 @@ The automated deployment runs on:
 
 ### 5. Quality Standards Enforced
 The workflow requires minimum scores:
-- Performance: 80/100
+- Performance: Monitored but not blocking (reported only)
 - Accessibility: 80/100
 - Best Practices: 80/100
 - SEO: 80/100
