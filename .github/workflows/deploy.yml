@@ -40,7 +40,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm init -y
-          npm install --save-dev htmlhint stylelint eslint lighthouse axe-core puppeteer
+          npm install --save-dev htmlhint stylelint eslint lighthouse axe-core puppeteer @axe-core/puppeteer chrome-launcher
 
       - name: HTML Validation
         run: |
@@ -151,7 +151,6 @@ jobs:
           })();
           EOF
           
-          npm install chrome-launcher
           node lighthouse-test.js
 
       - name: Upload lighthouse report
