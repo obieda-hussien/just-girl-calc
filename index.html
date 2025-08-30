@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Girl Calc - حاسبة البنات</title>
+    
+    <!-- Import Arabic Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="calculator">
+            <!-- Display Screen -->
+            <div class="display" id="display">
+                ...اكتبي أرقامك يا حلوة
+            </div>
+            
+            <!-- Button Grid -->
+            <div class="button-grid">
+                <!-- First Row -->
+                <button class="btn btn-clear" id="clear">AC</button>
+                <button class="btn btn-operator" id="divide">÷</button>
+                <button class="btn btn-operator" id="multiply">×</button>
+                <button class="btn btn-operator" id="subtract">-</button>
+                
+                <!-- Second Row -->
+                <button class="btn btn-number" id="seven">٧</button>
+                <button class="btn btn-number" id="eight">٨</button>
+                <button class="btn btn-number" id="nine">٩</button>
+                <button class="btn btn-operator" id="add">+</button>
+                
+                <!-- Third Row -->
+                <button class="btn btn-number" id="four">٤</button>
+                <button class="btn btn-number" id="five">٥</button>
+                <button class="btn btn-number" id="six">٦</button>
+                <button class="btn btn-equals" id="equals" rowspan="2">=</button>
+                
+                <!-- Fourth Row -->
+                <button class="btn btn-number" id="one">١</button>
+                <button class="btn btn-number" id="two">٢</button>
+                <button class="btn btn-number" id="three">٣</button>
+                
+                <!-- Fifth Row -->
+                <button class="btn btn-number btn-zero" id="zero">٠</button>
+                <button class="btn btn-decimal" id="decimal">.</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Link to JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
