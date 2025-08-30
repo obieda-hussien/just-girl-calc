@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    
+    <!-- Main page with images -->
+    <url>
+        <loc>https://obieda-hussien.github.io/just-girl-calc/</loc>
+        <image:image>
+            <image:loc>https://obieda-hussien.github.io/just-girl-calc/images/og-image.png</image:loc>
+            <image:title>حاسبة البنات الساخرة - Just Girl Calc</image:title>
+            <image:caption>لقطة شاشة من حاسبة البنات الساخرة الشهيرة التي تقدم ردود مضحكة وساخرة باللغة العربية للبنات</image:caption>
+            <image:geo_location>Egypt, Saudi Arabia, UAE, Arab World</image:geo_location>
+        </image:image>
+        <image:image>
+            <image:loc>https://obieda-hussien.github.io/just-girl-calc/images/twitter-image.png</image:loc>
+            <image:title>Just Girl Calc - أفضل حاسبة للبنات في العالم العربي</image:title>
+            <image:caption>واجهة حاسبة البنات الوردية الجميلة مع الأرقام العربية والتصميم الأنيق المصمم خصيصاً للبنات</image:caption>
+            <image:geo_location>MENA Region</image:geo_location>
+        </image:image>
+        <image:image>
+            <image:loc>https://obieda-hussien.github.io/just-girl-calc/favicon.ico</image:loc>
+            <image:title>أيقونة حاسبة البنات</image:title>
+            <image:caption>أيقونة موقع حاسبة البنات الساخرة</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://obieda-hussien.github.io/just-girl-calc/images/apple-touch-icon.png</image:loc>
+            <image:title>أيقونة حاسبة البنات للآيفون</image:title>
+            <image:caption>أيقونة تطبيق حاسبة البنات لأجهزة الآيفون والآيباد</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://obieda-hussien.github.io/just-girl-calc/images/android-chrome-192x192.png</image:loc>
+            <image:title>أيقونة حاسبة البنات للأندرويد</image:title>
+            <image:caption>أيقونة تطبيق حاسبة البنات لأجهزة الأندرويد - دقة عالية</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://obieda-hussien.github.io/just-girl-calc/images/android-chrome-512x512.png</image:loc>
+            <image:title>أيقونة حاسبة البنات عالية الدقة</image:title>
+            <image:caption>أيقونة حاسبة البنات بأعلى جودة للتطبيقات والمتاجر</image:caption>
+        </image:image>
+    </url>
+    
+</urlset>

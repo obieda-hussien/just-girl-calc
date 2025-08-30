@@ -1,10 +1,15 @@
-// Just Girl Calc - JavaScript Logic
+// Just Girl Calc - Enhanced JavaScript with SEO Tracking
 
 class JustGirlCalc {
     constructor() {
         this.display = document.getElementById('display');
         this.currentInput = '';
         this.shouldResetDisplay = false;
+        this.sessionStartTime = Date.now();
+        this.interactionCount = 0;
+        
+        // Initialize SEO tracking
+        this.initializeSEOTracking();
         
         // Message arrays for different scenarios
         this.multiplicationMessages = [
@@ -39,6 +44,125 @@ class JustGirlCalc {
             "كل واحد ياخد بتاعه ومنشوفش وش بعض تاني."
         ];
 
+        this.divideByZeroMessages = [
+            "إيه اللي انت عملته ده؟ بوظتني!",
+            "مينفعش طبعًا، ده حتى في العلاقات مينفعش.",
+            "الكون كله هينفجر لو عملنا كده، اهدا والنبي."
+        ];
+
+        this.complexMessages = [
+            "لا لا لا كل ده! انت عايز تجنني؟",
+            "دماغي لفت، هاتلي قهوة الأول عشان أركز ☕",
+            "كتر كده ليه؟ ده أنا أعد على صوابعي.",
+            "خلصوا كتر كده، آخري حاسبة جوجل.",
+            "عايزني أتعب نفسي ليه، ألعب كاندي كراش أحسن."
+        ];
+
+        this.phoneNumberMessages = [
+            "رقم مين ده اللي بتكتبهولي؟ عايزني أغير يعني؟ 😡",
+            "يا ابنتي مش تطبيق WhatsApp.",
+            "ده رقم حبيبك ولا حبيبتك؟ مقولتيش!",
+            "هات الرقم ده بلاش، أنا مش تليفون بوك.",
+            "تخبي رقم وتفضحيه عندي؟ إيه القرف ده!"
+        ];
+
+        this.clearMessages = [
+            "مسحت الرقم؟ طب امسح نمرته من عندك بالمرة 💔",
+            "ياعم احذف كله، زي حياتك كده.",
+            "مسح! زي ما كل الذكريات اتمسحت 😪",
+            "clear عليا وعلى اللي خلفني.",
+            "آدي الحل! امسحي كل حاجة وابدئي من جديد."
+        ];
+        
+        this.initializeSEOTracking();
+        this.initializeCalculator();
+    }
+
+    initializeSEOTracking() {
+        // Track page load for SEO analytics
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                'page_title': 'حاسبة البنات الساخرة',
+                'page_location': window.location.href,
+                'custom_map.arabic_content': true,
+                'custom_map.target_audience': 'girls'
+            });
+        }
+        
+        // Track calculator load
+        this.trackSEOEvent('calculator_loaded', 'engagement', 'حاسبة البنات محملة');
+        
+        // Set up periodic engagement tracking
+        setInterval(() => {
+            if (this.interactionCount > 0) {
+                this.trackSEOEvent('session_active', 'engagement', `${this.interactionCount} interactions`);
+            }
+        }, 30000); // Every 30 seconds
+        
+        // Track scroll behavior for engagement
+        let scrollTracked = false;
+        window.addEventListener('scroll', () => {
+            if (!scrollTracked && window.scrollY > 100) {
+                this.trackSEOEvent('page_scroll', 'engagement', 'user scrolled page');
+                scrollTracked = true;
+            }
+        });
+        
+        // Track time on page for engagement metrics
+        window.addEventListener('beforeunload', () => {
+            const timeSpent = Math.round((Date.now() - this.sessionStartTime) / 1000);
+            this.trackSEOEvent('session_duration', 'engagement', `${timeSpent} seconds`);
+        });
+    }
+    
+    trackSEOEvent(action, category, label) {
+        // Google Analytics tracking
+        if (typeof gtag !== 'undefined') {
+            gtag('event', action, {
+                'event_category': category,
+                'event_label': label,
+                'custom_map.arabic_site': true,
+                'custom_map.girl_calculator': true
+            });
+        }
+        
+        // Console tracking for debugging
+        console.log(`SEO Event: ${action} | ${category} | ${label}`);
+        
+        // Track for SEO metrics
+        this.updateEngagementMetrics(action);
+    }
+    
+    updateEngagementMetrics(action) {
+        this.interactionCount++;
+        
+        // Track specific calculator interactions for SEO
+        if (action.includes('button_click')) {
+            this.trackSEOEvent('calculator_engagement', 'interaction', `button ${action}`);
+        }
+        
+        // Track if user is highly engaged (many interactions)
+        if (this.interactionCount === 10) {
+            this.trackSEOEvent('high_engagement', 'milestone', 'user very engaged');
+        }
+        
+        if (this.interactionCount === 25) {
+            this.trackSEOEvent('super_engagement', 'milestone', 'user super engaged');
+        }
+    }
+
+    initializeCalculator() {
+                'custom_map.girl_calculator': true
+            });
+        }
+        
+        // Console tracking for debugging
+        console.log(`SEO Event: ${action} | ${category} | ${label}`);
+        
+        // Track for SEO metrics
+        this.updateEngagementMetrics(action);
+    }
+    
         this.divideByZeroMessages = [
             "إيه اللي انت عملته ده؟ بوظتني!",
             "مينفعش طبعًا، ده حتى في العلاقات مينفعش.",

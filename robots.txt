@@ -1,38 +1,87 @@
 User-agent: *
 Allow: /
 
+# High-priority pages for crawling
+Allow: /index.html
+Allow: /style.css
+Allow: /script.js
+Allow: /privacy-policy.html
+Allow: /terms-of-service.html
+Allow: /user-policy.html
+
+# Images and media
+Allow: /images/
+Allow: /favicon.ico
+Allow: *.png
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.gif
+Allow: *.svg
+Allow: *.webp
+
+# PWA and configuration files
+Allow: /site.webmanifest
+Allow: /browserconfig.xml
+
+# Block unnecessary files
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /.gitignore
+Disallow: /README.md
+Disallow: /GITHUB_PAGES_SETUP.md
+Disallow: /_config.yml
+Disallow: /.nojekyll
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+
 # Sitemap location
 Sitemap: https://obieda-hussien.github.io/just-girl-calc/sitemap.xml
+Sitemap: https://obieda-hussien.github.io/just-girl-calc/sitemap-images.xml
 
-# Crawl-delay for respectful crawling
+# Crawl rate - Be gentle with our server
 Crawl-delay: 1
 
-# Allow all major search engines
+# Special instructions for major search engines
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Slurp
 Allow: /
+Crawl-delay: 2
 
 User-agent: DuckDuckBot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Baiduspider
 Allow: /
+Crawl-delay: 2
 
 User-agent: YandexBot
 Allow: /
+Crawl-delay: 1
 
-# Block access to sensitive files (if any in future)
-Disallow: /admin/
-Disallow: /private/
-Disallow: /.git/
-Disallow: /tmp/
+# Social media crawlers
+User-agent: facebookexternalhit
+Allow: /
 
-# Allow crawling of CSS and JS files for better rendering
-Allow: /style.css
-Allow: /script.js
-Allow: /images/
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+User-agent: SkypeUriPreview
+Allow: /

@@ -1,0 +1,81 @@
+# Google Business Profile Configuration for Just Girl Calc
+# Enhanced Local SEO for MENA Region
+
+# Business Information
+BUSINESS_NAME="حاسبة البنات - Just Girl Calc"
+BUSINESS_DESCRIPTION="🌟 أشهر حاسبة للبنات في الوطن العربي! آلة حاسبة ساخرة بشخصية فريدة تقدم ردود مضحكة باللغة العربية. مجانية 100% ومتاحة للجميع."
+
+# Categories (Arabic and English)
+PRIMARY_CATEGORY="خدمات الحاسوب والإنترنت"
+SECONDARY_CATEGORIES="تطبيقات الهاتف المحمول,أدوات رقمية,ترفيه رقمي,خدمات للبنات"
+
+# Service Areas (MENA Region)
+SERVICE_AREAS="مصر,السعودية,الإمارات,الكويت,قطر,البحرين,عمان,الأردن,لبنان,المغرب,تونس,الجزائر"
+
+# Keywords for Local SEO
+LOCAL_KEYWORDS="حاسبة البنات في مصر,حاسبة ساخرة السعودية,أفضل حاسبة الإمارات,حاسبة مجانية الكويت,تطبيق حاسبة قطر,حاسبة عربية البحرين,موقع حاسبة عمان,حاسبة بنات الأردن,آلة حاسبة لبنان,حاسبة المغرب,حاسبة تونس,حاسبة الجزائر"
+
+# Social Media Links
+FACEBOOK="https://facebook.com/justgirlcalc"
+INSTAGRAM="https://instagram.com/justgirlcalc"
+TWITTER="https://twitter.com/justgirlcalc"
+TIKTOK="https://tiktok.com/@justgirlcalc"
+YOUTUBE="https://youtube.com/@justgirlcalc"
+
+# Website Information
+WEBSITE_URL="https://obieda-hussien.github.io/just-girl-calc/"
+BOOKING_URL="https://obieda-hussien.github.io/just-girl-calc/"
+MENU_URL="https://obieda-hussien.github.io/just-girl-calc/user-policy.html"
+
+# Business Hours (24/7 online service)
+MONDAY="24 ساعة"
+TUESDAY="24 ساعة"
+WEDNESDAY="24 ساعة"
+THURSDAY="24 ساعة"
+FRIDAY="24 ساعة"
+SATURDAY="24 ساعة"
+SUNDAY="24 ساعة"
+
+# Attributes
+WHEELCHAIR_ACCESSIBLE="نعم (خدمة إلكترونية)"
+FREE_WIFI="نعم"
+ACCEPTS_CREDIT_CARDS="غير مطلوب (مجاني)"
+APPOINTMENT_REQUIRED="لا"
+LGBTQ_FRIENDLY="نعم"
+WOMEN_LED="نعم"
+
+# Products and Services
+SERVICES="حاسبة البنات الساخرة,آلة حاسبة مضحكة,حاسبة بشخصية,أدوات رياضية,ترفيه رقمي,تطبيقات مجانية"
+
+# FAQ for Google Business
+FAQ_1_QUESTION="ما هي حاسبة البنات؟"
+FAQ_1_ANSWER="حاسبة البنات هي آلة حاسبة فريدة بشخصية ساخرة تقدم ردود مضحكة باللغة العربية بدلاً من النتائج الرياضية التقليدية."
+
+FAQ_2_QUESTION="هل حاسبة البنات مجانية؟"
+FAQ_2_ANSWER="نعم، حاسبة البنات مجانية 100% ولا تتطلب أي اشتراك أو دفع."
+
+FAQ_3_QUESTION="هل تعمل على الهاتف المحمول؟"
+FAQ_3_ANSWER="نعم، حاسبة البنات تعمل على جميع الأجهزة - الهاتف والتابلت والكمبيوتر."
+
+FAQ_4_QUESTION="كيف أستخدم حاسبة البنات؟"
+FAQ_4_ANSWER="ببساطة ادخلي العمليات الحسابية وستحصلين على ردود ساخرة ومضحكة بدلاً من النتائج العادية."
+
+# Reviews and Ratings Target
+TARGET_RATING="4.8"
+REVIEW_KEYWORDS="مضحكة,ساخرة,رائعة,ممتعة,إبداعية,فريدة,أحبها,مدمنة عليها"
+
+# Local SEO Tags
+HASHTAGS="#حاسبة_البنات #ترند_البنات #حاسبة_ساخرة #فيرال_البنات #JustGirlCalc #أدوات_البنات #مجاني #عربي"
+
+# Citation Information for Local Directories
+NAP_NAME="حاسبة البنات - Just Girl Calc"
+NAP_ADDRESS="خدمة إلكترونية متاحة في جميع أنحاء الوطن العربي"
+NAP_PHONE="+1-000-GIRLCALC"
+NAP_EMAIL="info@justgirlcalc.com"
+
+# Schema Markup for Local Business
+SCHEMA_TYPE="SoftwareApplication"
+SCHEMA_CATEGORY="CalculatorApplication"
+SCHEMA_AUDIENCE="Girls, Teenagers, Young Women, البنات, الفتيات"
+SCHEMA_INLANGUAGE="ar-EG, ar-SA, ar-AE, ar"
+SCHEMA_APPSTORE="WebApplication"
